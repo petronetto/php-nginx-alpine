@@ -1,36 +1,23 @@
-FROM ubuntu:16.04
+FROM alpine:latest
+MAINTAINER Tim de Pater <code@trafex.nl>
 
-MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
+# Install packages
+RUN apk --update add php7 php7-fpm nginx supervisor --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
-RUN locale-gen pt_BR.UTF-8
+# Configure nginx
+COPY config/nginx.conf /etc/nginx/nginx.conf
 
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR:en
-ENV LC_ALL pt_BR.UTF-8
+# Configure PHP-FPM
+COPY config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
+COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 
-RUN apt-get update \
+# Configure supervisord
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-    && apt-get install -y curl zip unzip git software-properties-common \
-    && add-apt-repository -y ppa:ondrej/php \
-    && apt-get update \
-    && apt-get install -y php7.0-fpm php7.0-cli php7.0-mcrypt php7.0-gd php7.0-mysql \
-       php7.0-pgsql php7.0-imap php-memcached php7.0-mbstring php7.0-xml php7.0-curl nginx vim \
-    && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
-    && mkdir /run/php \
-    && apt-get remove -y --purge software-properties-common \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
+# Add application
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
+COPY src/ /var/www/html/
 
-ADD php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
-ADD www.conf /etc/php/7.0/fpm/pool.d/www.conf
-ADD default /etc/nginx/sites-available/default
-
-EXPOSE 9000
-EXPOSE 80
-EXPOSE 443
-
-WORKDIR "/var/www/html/"
-
-CMD ["service", "php-fpm7.0", "start"]
-CMD ["service", "nginx", "start"]
+EXPOSE 80 443
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
