@@ -29,5 +29,7 @@ ADD default /etc/nginx/sites-available/default
 EXPOSE 80 
 EXPOSE 443
 
+WORKDIR "/var/www/html/"
+
 CMD ["service", "php7.0-fpm", "start"]
 CMD ["service", "nginx", "start"]

@@ -1,29 +1,28 @@
 server {
-	listen 80 default_server;
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
 
-	root /var/www/html/public;
+    root /var/www/html/public;
+    index index.php index.html index.htm;
 
-	index index.html index.htm index.php;
+    server_name server_domain_name_or_IP;
 
-	server_name _;
+    location / {
+        try_files $uri $uri/ =404;
+    }
 
-	charset utf-8;
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
 
-	location = /favicon.ico { log_not_found off; access_log off; }
-	location = /robots.txt  { log_not_found off; access_log off; }
-
-	location / {
-		try_files $uri $uri/ /index.php$is_args$args;
-	}
-
-	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass 127.0.0.1:9000;
-	}
-
-	error_page 404 /index.php;
-
-	location ~ /\.ht {
-		deny all;
-	}
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
 }
