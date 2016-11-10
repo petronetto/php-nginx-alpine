@@ -1,19 +1,15 @@
-FROM alpine:latest
+FROM alpine:edge
 
 MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
 # Install packages
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk --update add \
-        php7-gd \
-        bash \
-        git \
-        curl \
+RUN apk --update add \
         php7 \
         php7-dom \
         php7-ctype \
         php7-curl \
         php7-fpm \
+        php7-gd \
         php7-intl \
         php7-json \
         php7-mbstring \
@@ -28,6 +24,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-iconv \
         php7-phar \
         php7-openssl \
+        nodejs \
+        git \
+        ca-certificates \
+        nginx \
+        curl \
+        supervisor \
     && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
