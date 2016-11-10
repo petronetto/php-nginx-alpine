@@ -26,10 +26,11 @@ ADD php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
 ADD www.conf /etc/php/7.0/fpm/pool.d/www.conf
 ADD default /etc/nginx/sites-available/default
 
-EXPOSE 80 
+EXPOSE 9000
+EXPOSE 80
 EXPOSE 443
 
 WORKDIR "/var/www/html/"
 
-CMD ["service", "php7.0-fpm", "start"]
+CMD ["service", "php-fpm7.0", "start"]
 CMD ["service", "nginx", "start"]
