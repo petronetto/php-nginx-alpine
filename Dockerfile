@@ -31,4 +31,3 @@ EXPOSE 443
 
 CMD ["service", "php7.0-fpm", "start"]
 CMD ["service", "nginx", "start"]
-CMD ["/usr/local/bin/start.sh"]
