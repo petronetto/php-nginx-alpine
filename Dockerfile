@@ -1,9 +1,9 @@
-FROM phusion/baseimage:0.9.15
+FROM petronetto/ubuntu
 
 # Ensure UTF-8
-RUN locale-gen en_US.UTF-8
-ENV LANG       en_US.UTF-8
-ENV LC_ALL     en_US.UTF-8
+RUN locale-gen pt_BR.UTF-8
+ENV LANG       pt_BR.UTF-8
+ENV LC_ALL     pt_BR.UTF-8
 
 ENV HOME /root
 
