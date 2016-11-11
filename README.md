@@ -1,4 +1,4 @@
-Dockerized PHP for Laravel development
+Dockerized PHP
 ==============================================
 This image contains:
 - PHP-FPM 7.0
@@ -14,7 +14,7 @@ Start the Docker containers:
 
 `sudo docker run -p 80:80 --name container_name petronetto/php-nginx`
 
-Creating a new Laravel project:
+Using Composer:
 ```
 # Create a Laravel application
 docker run -it container_name composer create-project laravel/laravel application
