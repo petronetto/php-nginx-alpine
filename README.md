@@ -12,7 +12,7 @@ Usage
 -----
 Start the Docker containers:
 
-`sudo docker run -p 80:80 --name container_name petronetto/php-nginx`
+`sudo docker run -p 80:80 --name container_name petronetto/php-nginx-alpine`
 
 Using Composer:
 ```
