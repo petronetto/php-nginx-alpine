@@ -36,14 +36,15 @@ RUN apk --update add \
 RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-# Configure nginx
-COPY config/nginx.conf /etc/nginx/nginx.conf
+# Configure Nginx
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/default /etc/nginx/sites-enabled/default
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
-COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY config/php/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY config/php/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
