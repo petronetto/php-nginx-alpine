@@ -8,6 +8,12 @@ This image contains:
 - Git
 - Composer
 
+Docker Setup
+----
+- [Docker for Mac](https://docs.docker.com/docker-for-mac/)
+- [Docker for Linux](https://docs.docker.com/engine/installation/linux/)
+- [Docker for Windows](https://docs.docker.com/docker-for-windows/)
+
 Usage
 -----
 Start the Docker containers:

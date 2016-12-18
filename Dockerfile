@@ -6,23 +6,14 @@ MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 RUN apk --update add \
         php7 \
         php7-dom \
-        php7-ctype \
-        php7-curl \
         php7-fpm \
-        php7-gd \
-        php7-intl \
         php7-json \
         php7-mbstring \
         php7-mcrypt \
-        php7-mysqlnd \
         php7-opcache \
         php7-pdo \
         php7-pdo_mysql \
-        php7-posix \
-        php7-session \
         php7-xml \
-        php7-iconv \
-        php7-phar \
         php7-openssl \
         nodejs \
         git \
@@ -50,9 +41,9 @@ COPY config/php/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add application
-RUN mkdir -p /var/www/html
-WORKDIR /var/www/html
-COPY src/ /var/www/html/
+RUN mkdir -p /var/www/src
+WORKDIR /var/www/src
+COPY src/ /var/www/src/
 
 EXPOSE 80 443
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

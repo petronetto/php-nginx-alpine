@@ -5,7 +5,7 @@ server {
 
     sendfile off;
 
-    root /var/www/html/public;
+    root /var/www/src/public;
     index index.php index.html;
 
     location / {
