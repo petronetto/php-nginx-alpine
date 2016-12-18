@@ -24,7 +24,6 @@ docker run -p 8080:80 --name <NAME_OF_YOUR_CONTAINER> -d petronetto/php-nginx-al
 
 Using Composer:
 ```bash
-# Creating a Laravel application
 docker run -it <NAME_OF_YOUR_CONTAINER> composer <command>
 ```
 
