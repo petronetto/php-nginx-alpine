@@ -16,9 +16,9 @@ RUN apk --update add \
         php7-phar \
         php7-openssl \
         php7-json \
+        php7-ctype \
         # php7-mysqlnd \
         # php7-session \
-        # php7-ctype \
         # php7-curl \
         # php7-gd \
         # php7-intl \
