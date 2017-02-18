@@ -57,9 +57,11 @@ RUN mkdir -p /var/www/src
 WORKDIR /var/www/src
 COPY src/ /var/www/src/
 
-# Creating user www-data
-RUN set -x \
-	adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
+# Set UID for www-data user to 33
+RUN deluser xfs \
+    && deluser www-data \
+    && addgroup -g 33 -S www-data \
+    && adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
 
 EXPOSE 80 443
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
