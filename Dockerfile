@@ -59,7 +59,7 @@ COPY src/ /var/www/src/
 
 # Set UID for www-data user to 33
 RUN deluser xfs \
-    && deluser www-data \
+    && delgroup www-data \
     && addgroup -g 33 -S www-data \
     && adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
 
