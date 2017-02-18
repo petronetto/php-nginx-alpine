@@ -57,8 +57,9 @@ RUN mkdir -p /var/www/src
 WORKDIR /var/www/src
 COPY src/ /var/www/src/
 
-# Creating 
-RUN adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
+# Creating user www-data
+RUN set -x \
+	adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
 
 EXPOSE 80 443
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
