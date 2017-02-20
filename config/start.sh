@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Tweak nginx to match the workers to cpu's
 procs=$(cat /proc/cpuinfo | grep processor | wc -l)

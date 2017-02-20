@@ -64,7 +64,7 @@ RUN deluser xfs \
     && adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
 
 # Start Supervisord
-ADD ./config/start.sh /start.sh
+ADD config/start.sh /start.sh
 RUN chmod 755 /start.sh
 
 EXPOSE 80 443
