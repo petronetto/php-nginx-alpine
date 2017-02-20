@@ -26,9 +26,9 @@ RUN apk --update add \
         # php7-intl \
         # php7-posix \
         # php7-iconv \
-        nodejs \
-        git \
-        ca-certificates \
+        # nodejs \
+        # git \
+        # ca-certificates \
         nginx \
         curl \
         supervisor \
@@ -39,7 +39,7 @@ RUN apk --update add \
 RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Configure Nginx
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -50,7 +50,7 @@ COPY config/php/php.ini /etc/php7/conf.d/zzz_custom.ini
 COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 
 # Configure supervisord
-COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/supervisord.conf /etc/supervisord.conf
 
 # Add application
 RUN mkdir -p /var/www/src
@@ -63,5 +63,11 @@ RUN deluser xfs \
     && addgroup -g 33 -S www-data \
     && adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data
 
+# Start Supervisord
+ADD ./config/start.sh /start.sh
+RUN chmod 755 /start.sh
+
 EXPOSE 80 443
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# Start Supervisord
+CMD ["/start.sh"]
