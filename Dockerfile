@@ -4,6 +4,9 @@ MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
 # Install packages
 RUN apk --update add \
+        nginx \
+        curl \
+        supervisor \
         php7 \
         php7-dom \
         php7-fpm \
@@ -29,9 +32,6 @@ RUN apk --update add \
         # nodejs \
         # git \
         # ca-certificates \
-        nginx \
-        curl \
-        supervisor \
 
     && rm -rf /var/cache/apk/*
 
@@ -66,8 +66,6 @@ RUN deluser xfs \
 # Start Supervisord
 ADD config/start.sh /start.sh
 RUN chmod 755 /start.sh
-
-EXPOSE 80 443
 
 # Start Supervisord
 CMD ["/start.sh"]
