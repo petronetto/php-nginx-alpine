@@ -14,7 +14,7 @@ RUN apk --update add \
         php7-mcrypt \
         php7-opcache \
         php7-pdo \
-        php7-pdo_mysql \
+        php7-pdo_mysql \ 
         php7-pdo_pgsql \
         php7-xml \
         php7-phar \
@@ -39,7 +39,7 @@ RUN apk --update add \
 RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Install Composer
-# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Configure Nginx
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
