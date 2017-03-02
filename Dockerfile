@@ -2,11 +2,22 @@ FROM alpine:edge
 
 MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
+# Add the testing repo
+# RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
+
 # Install packages
-RUN apk --update add \
+RUN apk --update add --no-cache \
         nginx \
         curl \
         supervisor \
+        gd \
+        freetype \
+        libpng \
+        libjpeg-turbo \
+        freetype-dev \
+        libpng-dev \
+        nodejs \
+        git \
         php7 \
         php7-dom \
         php7-fpm \
@@ -23,17 +34,18 @@ RUN apk --update add \
         php7-json \
         php7-ctype \
         php7-session \
+        php7-gd \
+        # php7-zip \
+        # php7-bz2 \
+        # php7-intl \
+        # php7-pcntl \
+        # php7-sockets \
         # php7-xdebug \
         # php7-mysqlnd \
         # php7-curl \
-        # php7-gd \
-        # php7-intl \
         # php7-posix \
         # php7-iconv \
-        # nodejs \
-        # git \
         # ca-certificates \
-
     && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
@@ -47,7 +59,7 @@ COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/default /etc/nginx/sites-enabled/default
 
 # Configure PHP-FPM
-COPY config/php/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY config/php/php.ini /etc/php7/php.ini
 COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 
 # Configure supervisord
