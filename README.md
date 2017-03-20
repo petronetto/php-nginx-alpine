@@ -29,8 +29,8 @@ To setup New Relic Agent you must pass the environment `NEWRELIC='true'`, `NEWRE
 
 
 ```bash
-docker run -p 9090:80 \
-	--name teste \
+docker run -p 8080:80 \
+	--name <NAME_OF_YOUR_CONTAINER> \
 	-e NEWRELIC='true' \
 	-e NEWRELIC_APP_NAME='MyApp' \
 	-e NEWRELIC_VERSION='7.0.0.186' \
