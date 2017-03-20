@@ -18,6 +18,8 @@ if [ "${NEWRELIC}" = "true" ]; then
 	sed -i -e "s/newrelic.license = .*/newrelic.license = \"${NEWRELIC_LICENSE}\"/" /etc/php7/conf.d/newrelic.ini
 	sed -i -e "s/;newrelic.loglevel = .*/newrelic.loglevel = \"${NEWRELIC_LOG_LEVEL}\"/" /etc/php7/conf.d/newrelic.ini
 	sed -i -e "s/;newrelic.daemon.loglevel = .*/newrelic.daemon.loglevel = \"${NEWRELIC_DAEMON_LOG_LEVEL}\"/" /etc/php7/conf.d/newrelic.ini
+	sed -i -e "s/newrelic.logfile = .*/newrelic.logfile = \"\/dev\/stdout\"/" /etc/php7/conf.d/newrelic.ini
+	sed -i -e "s/newrelic.daemon.logfile = .*/newrelic.daemon.logfile = \"\/dev\/stdout\"/" /etc/php7/conf.d/newrelic.ini
 fi;
 
 # Start supervisord and services
