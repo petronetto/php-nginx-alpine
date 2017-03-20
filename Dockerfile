@@ -25,7 +25,7 @@ RUN apk --update add --no-cache \
         php7-mcrypt \
         php7-opcache \
         php7-pdo \
-        php7-pdo_mysql \ 
+        php7-pdo_mysql \
         php7-pdo_pgsql \
         php7-pdo_sqlite \
         php7-xml \
@@ -35,17 +35,7 @@ RUN apk --update add --no-cache \
         php7-ctype \
         php7-session \
         php7-gd \
-        # php7-zip \
-        # php7-bz2 \
-        # php7-intl \
-        # php7-pcntl \
-        # php7-sockets \
-        # php7-xdebug \
-        # php7-mysqlnd \
-        # php7-curl \
-        # php7-posix \
-        # php7-iconv \
-        # ca-certificates \
+        php7-zlib \
     && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
