@@ -1,9 +1,9 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
 # Add the testing repo
-# RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
 # Install packages
 RUN apk --update add --no-cache \
