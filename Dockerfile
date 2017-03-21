@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
