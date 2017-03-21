@@ -2,9 +2,6 @@ FROM alpine:edge
 
 MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
-# Add the testing repo
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-
 # Install packages
 RUN apk --update add --no-cache \
         nginx \
@@ -60,12 +57,10 @@ RUN mkdir -p /var/www/src
 WORKDIR /var/www/src
 COPY src/ /var/www/src/
 
-# Set UID for www-data user to 33
-RUN deluser xfs \
-    && delgroup www-data \
-    && addgroup -g 33 -S www-data \
-    && adduser -u 33 -D -S -G www-data -h /var/www/src -g www-data www-data \
-    && chown -R www-data:www-data /var/lib/nginx
+# Creating user and Group, and setting correct permissions
+RUN adduser -D -u 1000 -g 'www' www \
+    && chown -R www:www /var/www/src \
+    && chown -R www:www /var/lib/nginx
 
 # Start Supervisord
 ADD config/start.sh /start.sh
