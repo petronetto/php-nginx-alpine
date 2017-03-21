@@ -57,9 +57,9 @@ RUN mkdir -p /var/www/src
 WORKDIR /var/www/src
 COPY src/ /var/www/src/
 
-# Creating user and Group, and setting correct permissions
-RUN adduser -D -u 1000 -g 'www' www \
-    && chown -R www:www /var/www/src \
+# Set UID for www user to 1000
+RUN addgroup -g 1000 -S www \
+    && adduser -u 1000 -D -S -G www -h /var/www/src -g www www \
     && chown -R www:www /var/lib/nginx
 
 # Start Supervisord
