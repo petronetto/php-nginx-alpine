@@ -2,7 +2,7 @@ server {
   listen   80; ## listen for ipv4; this line is default and implied
   listen   [::]:80 default ipv6only=on; ## listen for ipv6
 
-  root /var/www/src/public;
+  root /app/public;
   index index.php index.html index.htm;
 
   gzip_types text/plain text/css application/javascript application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
@@ -13,7 +13,7 @@ server {
 
   error_page 500 502 503 504 /50x.html;
   location = /50x.html {
-    root /var/www/src/public;
+    root /app/public;
   }
 
   location ~ \.php$ {

@@ -54,13 +54,13 @@ COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 COPY config/supervisord.conf /etc/supervisord.conf
 
 # Add application
-RUN mkdir -p /var/www/src
-WORKDIR /var/www/src
-COPY src/ /var/www/src/
+RUN mkdir -p /app
+WORKDIR /app
+COPY src/ /app/
 
 # Set UID for www user to 1000
 RUN addgroup -g 1000 -S www \
-    && adduser -u 1000 -D -S -G www -h /var/www/src -g www www \
+    && adduser -u 1000 -D -S -G www -h /app -g www www \
     && chown -R www:www /var/lib/nginx
 
 # Start Supervisord

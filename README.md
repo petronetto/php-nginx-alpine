@@ -23,7 +23,10 @@ This image contains:
 Start the Docker containers:
 
 ```bash
-docker run -p 8080:80 --name <NAME_OF_YOUR_CONTAINER> -d petronetto/php-nginx-alpine
+docker run -p 8080:80 --name php \
+           -v $(pwd):/app \
+           -w /app \
+           -d petronetto/php-nginx-alpine
 ```
 
 ## New Relic
