@@ -29,9 +29,13 @@ docker run -p 8080:80 --name php \
            -d petronetto/php-nginx-alpine
 ```
 
+> NOTE: Nginx is configured to run the application inside the `/app` folder.
+
+This container will start a process to listen the queues. If you will not use queues, remove the lines referent to the `laravel-worker` in `supervisord.conf`.
+
 ## New Relic
 To setup New Relic Agent you must pass the environment `NEWRELIC='true'`, `NEWRELIC_VERSION='<INSERT_CURRENT_VERSION>'` and  `NEWRELIC_LICENSE='your-license'`.
->NOTE: Ensure that `NEWRELIC_VERSION` are correct, check the release versions [here](http://download.newrelic.com/php_agent/release/)
+> NOTE: Ensure that `NEWRELIC_VERSION` are correct, check the release versions [here](http://download.newrelic.com/php_agent/release/)
 
 
 ```bash
@@ -167,3 +171,6 @@ php7-pdo-7.0.16-r2
 php7-bz2-7.0.16-r2
 php7-mysqli-7.0.16-r2
 ```
+
+
+Enjoy :)
