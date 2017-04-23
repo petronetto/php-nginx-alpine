@@ -56,6 +56,8 @@ COPY config/supervisord.conf /etc/supervisord.conf
 # Add application
 RUN mkdir -p /app
 WORKDIR /app
+
+# Coping PHP example files
 COPY src/ /app/
 
 # Set UID for www user to 1000
@@ -65,7 +67,7 @@ RUN addgroup -g 1000 -S www \
 
 # Start Supervisord
 ADD config/start.sh /start.sh
-RUN chmod 755 /start.sh
+RUN chmod +x /start.sh
 
 # Start Supervisord
 CMD ["/start.sh"]
