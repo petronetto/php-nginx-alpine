@@ -53,8 +53,10 @@ COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisord.conf
 
-# Add application
+# Create application folder
 RUN mkdir -p /app
+
+# setting the workdir
 WORKDIR /app
 
 # Coping PHP example files
