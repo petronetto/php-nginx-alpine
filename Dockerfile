@@ -4,6 +4,7 @@ MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 
 # Install packages
 RUN apk --update add --no-cache \
+        tzdata \
         nginx \
         curl \
         supervisor \
@@ -35,6 +36,11 @@ RUN apk --update add --no-cache \
         php7-gd \
         php7-zlib \
     && rm -rf /var/cache/apk/*
+
+# Configuring timezones
+RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+RUN echo "America/Sao_Paulo" >  /etc/timezone
+RUN apk del tzdata && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
 RUN ln -s /usr/bin/php7 /usr/bin/php
