@@ -62,7 +62,7 @@ COPY config/supervisord.conf /etc/supervisord.conf
 # Create application folder
 RUN mkdir -p /app
 
-# setting the workdir
+# Setting the workdir
 WORKDIR /app
 
 # Coping PHP example files
