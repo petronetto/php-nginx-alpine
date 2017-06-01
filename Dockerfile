@@ -5,6 +5,7 @@ MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
 # Install packages
 RUN apk --update add --no-cache \
         tzdata \
+        nginx \
         curl \
         supervisor \
         gd \
@@ -16,7 +17,6 @@ RUN apk --update add --no-cache \
         nodejs \
         git \
         php7 \
-        php7-odbc \
         php7-dom \
         php7-fpm \
         php7-mbstring \
@@ -43,8 +43,14 @@ RUN echo "America/Sao_Paulo" >  /etc/timezone
 RUN apk del tzdata && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
-#RUN ln -s /usr/bin/php7 /usr/bin/php
+RUN ln -s /usr/bin/php7 /usr/bin/php
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# Configure Nginx
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/default /etc/nginx/sites-enabled/default
 
 # Configure PHP-FPM
 COPY config/php/php.ini /etc/php7/php.ini
@@ -54,18 +60,23 @@ COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 COPY config/supervisord.conf /etc/supervisord.conf
 
 # Create application folder
-RUN mkdir -p /var/www/html
+RUN mkdir -p /app
 
 # Setting the workdir
-WORKDIR /var/www/html
+WORKDIR /app
+
+# Coping PHP example files
+COPY src/ /app/
 
 # Set UID for www user to 1000
-#RUN addgroup -g 1000 -S www \
-#    && adduser -u 1000 -D -S -G www -h /app -g www www \
+RUN addgroup -g 1000 -S www \
+    && adduser -u 1000 -D -S -G www -h /app -g www www \
+    && chown -R www:www /var/lib/nginx
 
 # Start Supervisord
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
+
 
 # Expose ports
 EXPOSE 9000
