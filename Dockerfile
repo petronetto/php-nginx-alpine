@@ -17,6 +17,7 @@ RUN apk --update add --no-cache \
         nodejs \
         git \
         php7 \
+        php7-odbc \
         php7-dom \
         php7-fpm \
         php7-mbstring \
