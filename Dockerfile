@@ -80,6 +80,7 @@ RUN chmod +x /start.sh
 
 # Expose ports
 EXPOSE 9000
+EXPOSE 80
 
 # Start Supervisord
 CMD ["/start.sh"]
