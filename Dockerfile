@@ -57,13 +57,11 @@ COPY config/php/www.conf /etc/php7/php-fpm.d/www.conf
 COPY config/supervisord.conf /etc/supervisord.conf
 
 # Create application folder
-RUN mkdir -p /app
+RUN mkdir -p /var/www/html
 
 # Setting the workdir
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Coping PHP example files
-COPY src/ /app/
 
 # Set UID for www user to 1000
 #RUN addgroup -g 1000 -S www \
