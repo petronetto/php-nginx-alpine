@@ -45,9 +45,6 @@ RUN apk del tzdata && rm -rf /var/cache/apk/*
 # Creating symbolic link to php
 #RUN ln -s /usr/bin/php7 /usr/bin/php
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-
 
 # Configure PHP-FPM
 COPY config/php/php.ini /etc/php7/php.ini
@@ -62,7 +59,6 @@ RUN mkdir -p /var/www/html
 # Setting the workdir
 WORKDIR /var/www/html
 
-
 # Set UID for www user to 1000
 #RUN addgroup -g 1000 -S www \
 #    && adduser -u 1000 -D -S -G www -h /app -g www www \
@@ -70,7 +66,6 @@ WORKDIR /var/www/html
 # Start Supervisord
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
-
 
 # Expose ports
 EXPOSE 9000
