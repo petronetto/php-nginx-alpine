@@ -73,5 +73,9 @@ COPY src/ /app/
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
 
+
+# Expose ports
+EXPOSE 9000
+
 # Start Supervisord
 CMD ["/start.sh"]
