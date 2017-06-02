@@ -1,6 +1,7 @@
 FROM alpine:edge
 
-MAINTAINER Juliano Petronetto <juliano@petronetto.com.br>
+# Maintainer
+MAINTAINER Connor <connor.niu@gmail.com>
 
 # Install packages
 RUN apk --update add --no-cache \
