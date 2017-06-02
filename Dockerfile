@@ -29,6 +29,7 @@ RUN apk --update add --no-cache \
         php7-pdo_dblib \
         php7-pdo_pgsql \
         php7-pdo_sqlite \
+        php7-tokenizer \
         php7-xml \
         php7-phar \
         php7-openssl \
