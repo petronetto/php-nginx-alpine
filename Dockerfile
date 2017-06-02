@@ -77,5 +77,10 @@ RUN addgroup -g 1000 -S www \
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
 
+# Expose ports
+EXPOSE 9000
+EXPOSE 80
+EXPOSE 443
+
 # Start Supervisord
 CMD ["/start.sh"]
