@@ -56,6 +56,19 @@ RUN apk del tzdata && rm -rf /var/cache/apk/*
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+# Install phpunit, the tool that we will use for testing
+RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+RUN chmod +x /usr/local/bin/phpunit
+
+# Install APIDoc
+RUN npm install -g apidoc
+
+# Install Grunt
+RUN npm install -g grunt-cli
+
+# Install APIDoc for Grunt
+RUN npm install grunt-apidoc --save-dev
+
 # Configure Nginx
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/default.conf /etc/nginx/sites-enabled/default.conf
