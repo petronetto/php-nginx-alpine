@@ -30,6 +30,10 @@ RUN apk --update add --no-cache \
         php7-pdo_pgsql \
         php7-pdo_sqlite \
         php7-tokenizer \
+        php7-soap \
+        php7-sockets \
+        php7-redis \
+        php7-xdebug \
         php7-xml \
         php7-phar \
         php7-openssl \
