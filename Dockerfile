@@ -55,6 +55,18 @@ RUN apk --update add --no-cache \
         php7-zlib \
         php7-zip \
         php7-xsl \
+        php7-shmop \
+        php7-imap \
+        php7-simplexml \
+        php7-pspell \
+        php7-posix \
+        php7-ftp \
+        php7-mysqlnd \
+        php7-mysqli \
+        php7-common \
+        php7-intl \
+        php7-sysvmsg \
+        php7-pcntl \
     && rm -rf /var/cache/apk/*
 
 # Configuring timezones
