@@ -3,7 +3,6 @@ FROM alpine:edge
 # Install packages
 RUN apk --update add --no-cache \
         tzdata \
-        nginx \
         curl \
         bash \
         supervisor \
@@ -45,11 +44,11 @@ RUN apk del tzdata && rm -rf /var/cache/apk/*
 #RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Configure Nginx
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY config/nginx/default /etc/nginx/sites-enabled/default
+#COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+#COPY config/nginx/default /etc/nginx/sites-enabled/default
 
 # Configure PHP-FPM
 #COPY config/php/php.ini /etc/php7/php.ini
@@ -68,9 +67,9 @@ WORKDIR /app
 COPY src/ /app/
 
 # Set UID for www user to 1000
-RUN addgroup -g 1000 -S www \
-    && adduser -u 1000 -D -S -G www -h /app -g www www \
-    && chown -R www:www /var/lib/nginx
+#RUN addgroup -g 1000 -S www \
+#    && adduser -u 1000 -D -S -G www -h /app -g www www \
+#    && chown -R www:www /var/lib/nginx
 
 # Start Supervisord
 ADD config/start.sh /start.sh
