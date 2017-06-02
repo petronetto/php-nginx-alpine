@@ -43,7 +43,7 @@ RUN echo "America/Sao_Paulo" >  /etc/timezone
 RUN apk del tzdata && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
-#RUN ln -s /usr/bin/php7 /usr/bin/php
+RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
@@ -76,11 +76,6 @@ RUN addgroup -g 1000 -S www \
 # Start Supervisord
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
-
-
-# Expose ports
-EXPOSE 9000
-EXPOSE 80
 
 # Start Supervisord
 CMD ["/start.sh"]
