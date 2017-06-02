@@ -7,6 +7,7 @@ RUN apk --update add --no-cache \
         tzdata \
         nginx \
         curl \
+        bash \
         supervisor \
         gd \
         freetype \
