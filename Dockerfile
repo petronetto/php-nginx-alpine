@@ -20,6 +20,7 @@ RUN apk --update add --no-cache \
         nodejs-npm \
         git \
         php7 \
+        php7-common \
         php7-dom \
         php7-fpm \
         php7-mbstring \
@@ -55,7 +56,6 @@ RUN apk --update add --no-cache \
         php7-ftp \
         php7-mysqlnd \
         php7-mysqli \
-        php7-common \
         php7-intl \
         php7-sysvmsg \
         php7-pcntl \
