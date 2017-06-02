@@ -61,13 +61,13 @@ RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpu
 RUN chmod +x /usr/local/bin/phpunit
 
 # Install APIDoc
-RUN npm install -g apidoc
+#RUN npm install -g apidoc
 
 # Install Grunt
-RUN npm install -g grunt-cli
+#RUN npm install -g grunt-cli
 
 # Install APIDoc for Grunt
-RUN npm install grunt-apidoc --save-dev
+#RUN npm install grunt-apidoc --save-dev
 
 # Configure Nginx
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
