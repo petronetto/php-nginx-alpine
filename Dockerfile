@@ -43,6 +43,7 @@ RUN apk --update add --no-cache \
         php7-session \
         php7-gd \
         php7-zlib \
+        php7-zip \
     && rm -rf /var/cache/apk/*
 
 # Configuring timezones
