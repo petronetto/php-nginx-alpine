@@ -4,12 +4,12 @@ FROM alpine:edge
 MAINTAINER Connor <connor.niu@gmail.com>
 
 # Set Timezone Environments
-ENV TIMEZONE            Asia/Shanghai
-RUN \
-	apk add --update tzdata && \
-	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
-	echo "${TIMEZONE}" > /etc/timezone && \
-	apk del tzdata
+#ENV TIMEZONE            Asia/Shanghai
+#RUN \
+#	apk add --update tzdata && \
+#	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
+#	echo "${TIMEZONE}" > /etc/timezone && \
+#	apk del tzdata
 
 
 # Install packages
@@ -44,6 +44,7 @@ RUN apk --update add --no-cache \
         php7-redis \
         php7-xdebug \
         php7-xml \
+        php7-xmlrpc \
         php7-phar \
         php7-openssl \
         php7-json \
