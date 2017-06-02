@@ -39,8 +39,8 @@ RUN apk --update add --no-cache \
     && rm -rf /var/cache/apk/*
 
 # Configuring timezones
-RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-RUN echo "America/Sao_Paulo" >  /etc/timezone
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo "Asia/Shanghai" >  /etc/timezone
 RUN apk del tzdata && rm -rf /var/cache/apk/*
 
 # Creating symbolic link to php
