@@ -114,7 +114,6 @@ RUN addgroup -g 1000 -S www \
 ADD config/start.sh /start.sh
 RUN chmod +x /start.sh
 
-COPY docker-php-* /usr/local/bin/
 
 # Expose ports
 EXPOSE 9000
