@@ -20,6 +20,7 @@ RUN apk --update add --no-cache \
         nodejs-npm \
         git \
         php7 \
+        php7-cgi \
         php7-common \
         php7-dom \
         php7-fpm \
