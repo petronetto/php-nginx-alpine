@@ -60,6 +60,7 @@ RUN apk --update add --no-cache \
         php7-intl \
         php7-sysvmsg \
         php7-pcntl \
+        php7-xmlwriter \
     && rm -rf /var/cache/apk/*
 
 # Configuring timezones
