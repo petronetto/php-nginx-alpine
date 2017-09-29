@@ -42,9 +42,6 @@ RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" >  /etc/timezone
 RUN apk del tzdata && rm -rf /var/cache/apk/*
 
-# Creating symbolic link to php
-RUN ln -s /usr/bin/php7 /usr/bin/php
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
@@ -74,7 +71,7 @@ RUN addgroup -g 1000 -S www \
     && chown -R www:www /var/lib/nginx
 
 # Start Supervisord
-ADD config/start.sh /start.sh
+ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Start Supervisord
